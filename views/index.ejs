@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .api-section {
+            text-align: left;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background: #f4f4f4;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        h2 {
+            color: #343a40;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+            position: relative;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 12px;
+            border-radius: 4px;
+        }
+
+        .copy-btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>📌 User Authentication API Documentation</h1>
+    <div class="container">
+
+        <div class="api-section">
+            <h2>1️⃣ Register User</h2>
+            <p><strong>🔗 Endpoint:</strong> <code>POST /api/auth/register</code></p>
+            <p><strong>📝 Request Body (JSON):</strong></p>
+            <pre>
+<button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "gender": "Male",
+  "email": "john@example.com",
+  "password": "123456"
+}
+            </pre>
+            <p><strong>✅ Response:</strong></p>
+            <pre>
+{
+  "message": "User registered successfully"
+}
+            </pre>
+        </div>
+
+        <div class="api-section">
+            <h2>2️⃣ Login User</h2>
+            <p><strong>🔗 Endpoint:</strong> <code>POST /api/auth/login</code></p>
+            <p><strong>📝 Request Body (JSON):</strong></p>
+            <pre>
+<button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+{
+  "email": "john@example.com",
+  "password": "123456"
+}
+            </pre>
+            <p><strong>✅ Response:</strong></p>
+            <pre>
+{
+  "token": "your-jwt-token",
+  "user": {
+    "id": "user-id",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john@example.com"
+  }
+}
+            </pre>
+        </div>
+
+        <div class="api-section">
+            <h2>3️⃣ Get User Profile</h2>
+            <p><strong>🔗 Endpoint:</strong> <code>GET /api/auth/profile</code></p>
+            <p><strong>🔑 Headers:</strong></p>
+            <pre>
+Authorization: Bearer your-jwt-token
+            </pre>
+            <p><strong>✅ Response:</strong></p>
+            <pre>
+{
+  "id": "user-id",
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john@example.com"
+}
+            </pre>
+        </div>
+
+        <div class="api-section">
+            <h2>4️⃣ Forgot Password</h2>
+            <p><strong>🔗 Endpoint:</strong> <code>POST /api/auth/forgot-password</code></p>
+            <p><strong>📝 Request Body (JSON):</strong></p>
+            <pre>
+<button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+{
+  "email": "john@example.com"
+}
+            </pre>
+            <p><strong>✅ Response:</strong></p>
+            <pre>
+{
+  "message": "Password reset link sent"
+}
+            </pre>
+        </div>
+
+        <div class="api-section">
+            <h2>5️⃣ Reset Password</h2>
+            <p><strong>🔗 Endpoint:</strong> <code>POST /api/auth/reset-password</code></p>
+            <p><strong>📝 Request Body (JSON):</strong></p>
+            <pre>
+<button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+{
+  "token": "reset-token",
+  "newPassword": "newpassword123"
+}
+            </pre>
+            <p><strong>✅ Response:</strong></p>
+            <pre>
+{
+  "message": "Password has been reset successfully"
+}
+            </pre>
+        </div>
+
+        <div class="api-section">
+            <h2>6️⃣ Logout User</h2>
+            <p><strong>🔗 Endpoint:</strong> <code>POST /api/auth/logout</code></p>
+            <p><strong>✅ Response:</strong></p>
+            <pre>
+{
+  "message": "User logged out"
+}
+            </pre>
+        </div>
+
+    </div>
+
+    <script>
+        function copyText(button) {
+            const text = button.nextElementSibling.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                button.innerText = "✅ Copied!";
+                setTimeout(() => { button.innerText = "📋 Copy"; }, 2000);
+            });
+        }
+    </script>
+
+</body>
+
+</html>
