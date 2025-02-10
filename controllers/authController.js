@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const sendEmail = require('../utils/sendEmail');
 
-// Register User
+
 const registerUser = async (req, res) => {
     const { firstName, lastName, gender, email, password } = req.body;
     const profileImage = req.file ? req.file.path : '';
@@ -21,7 +21,7 @@ const registerUser = async (req, res) => {
     }
 };
 
-// Login User
+
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
 
@@ -40,7 +40,7 @@ const loginUser = async (req, res) => {
     }
 };
 
-// Get User Profile
+
 const getUserProfile = async (req, res) => {
     try {
         const user = await User.findById(req.user.id).select('-password');
@@ -50,12 +50,12 @@ const getUserProfile = async (req, res) => {
     }
 };
 
-// Logout User
+
 const logoutUser = (req, res) => {
     res.json({ message: 'User logged out' });
 };
 
-// Forgot Password
+
 const forgotPassword = async (req, res) => {
     const { email } = req.body;
 
@@ -73,7 +73,7 @@ const forgotPassword = async (req, res) => {
     }
 };
 
-// Reset Password
+
 const resetPassword = async (req, res) => {
     const { token, newPassword } = req.body;
 
